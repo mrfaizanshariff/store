@@ -1,0 +1,12 @@
+<mat-drawer-container [autosize]="true"
+class="min-h-full max-w-full mx-auto border-x">
+    <mat-drawer  class="p-8 " mode="side" opened>
+        <div class="bg-rose-100">
+            <app-filters></app-filters>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content class="p-8">
+        <app-products-header (columnsCountChange)="onColumnsUpdate($event)"></app-products-header>
+        <p>{{columnsCount}}</p>
+    </mat-drawer-content>
+</mat-drawer-container>
