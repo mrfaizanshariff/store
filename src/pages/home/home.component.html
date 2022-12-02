@@ -2,11 +2,15 @@
 class="min-h-full max-w-full mx-auto border-x">
     <mat-drawer  class="p-8 " mode="side" opened>
         <div class="bg-rose-100">
-            <app-filters></app-filters>
+            <app-filters  (categorySelectionEvent)="onCategorySelected($event)"></app-filters>
         </div>
     </mat-drawer>
     <mat-drawer-content class="p-8">
-        <app-products-header (columnsCountChange)="onColumnsUpdate($event)"></app-products-header>
-        <p>{{columnsCount}}</p>
+        <app-products-header (limitChange)="limitUpdate($event)" (sortChange)="sortUpdate($event)" (columnsCountChange)="onColumnsUpdate($event)"></app-products-header>
+        <mat-grid-list [cols]="columnsCount" [rowHeight]="rowHeight" gutterSize="16">
+            <mat-grid-tile  *ngFor="let product of products">
+                <app-product-bo-x [product]="product" (addTocart)="onAddToCart($event)" class="w-full" [fullWidthMode]="columnsCount==1" class="max-w-full"></app-product-bo-x>
+            </mat-grid-tile>
+        </mat-grid-list>
     </mat-drawer-content>
 </mat-drawer-container>

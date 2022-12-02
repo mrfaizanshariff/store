@@ -9,6 +9,11 @@ import { HeaderComponent } from '../components/header/header.component';
 import { HomeComponent } from '../pages/home/home.component';
 import { ProductsHeaderComponent } from '../pages/home/components/products-header/products-header.component';
 import { FiltersComponent } from '../pages/home/components/filters/filters.component';
+import { ProductBoXComponent } from '../pages/home/components/product-bo-x/product-bo-x.component';
+import { CartComponent } from '../pages/cart/cart.component';
+import { CartService } from 'src/services/cart.service';
+import { StoreService } from 'src/services/store.service';
+import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,15 +21,19 @@ import { FiltersComponent } from '../pages/home/components/filters/filters.compo
     HeaderComponent,
     HomeComponent,
     ProductsHeaderComponent,
-    FiltersComponent
+    FiltersComponent,
+    ProductBoXComponent,
+    CartComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CartService,StoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
