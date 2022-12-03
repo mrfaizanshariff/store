@@ -1,11 +1,15 @@
 <mat-drawer-container [autosize]="true"
 class="min-h-full max-w-full mx-auto border-x">
-    <mat-drawer  class="p-8 " mode="side" opened>
+    <mat-drawer #drawer class="p-8 " mode="side">
         <div class="bg-rose-100">
             <app-filters  (categorySelectionEvent)="onCategorySelected($event)"></app-filters>
         </div>
     </mat-drawer>
     <mat-drawer-content class="p-8">
+        <button class="!w-[50px] !h-[50px] !mb-1" mat-mini-fab (click)="drawer.toggle()">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
         <app-products-header (limitChange)="limitUpdate($event)" (sortChange)="sortUpdate($event)" (columnsCountChange)="onColumnsUpdate($event)"></app-products-header>
         <mat-grid-list [cols]="columnsCount" [rowHeight]="rowHeight" gutterSize="16">
             <mat-grid-tile  *ngFor="let product of products">

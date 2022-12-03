@@ -26,6 +26,7 @@ export class FiltersComponent implements OnInit {
   getCategories() {
     this.storeService.getAllcategories().subscribe(_res=>{
       this.categories=_res
+      this.categories.push('All');
       console.log(this.categories,_res);
       
     })

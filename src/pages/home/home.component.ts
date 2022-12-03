@@ -82,7 +82,11 @@ export class HomeComponent implements OnInit,OnDestroy {
 
   onCategorySelected(category:string):void{
     this.selectedCategory = category
-    this.getProductsInCategory(category)
+    if(this.selectedCategory=='All'){
+      this.getProducts()
+    }else{
+      this.getProductsInCategory(category)
+    }
   }
 
   onAddToCart(product:Product):void{
@@ -103,11 +107,11 @@ export class HomeComponent implements OnInit,OnDestroy {
 
   sortUpdate(sort:string){
     this.sort = sort
-    this.getProducts(this.selectedCategory)
+    this.getProducts(this.selectedCategory=='All'?'':this.selectedCategory)
   }
   limitUpdate(limit:string){
     this.limit= limit
-    this.getProducts(this.selectedCategory)
+    this.getProducts(this.selectedCategory=='All'?'':this.selectedCategory)
   }
 
 }

@@ -84,9 +84,9 @@
         <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
     </table>
 </mat-card>
-<mat-card *ngIf="!cart.items.length">
-    <h1>OOPS your cart is empty
-        <button mat-raised-button routerLink="/home">Start Shopping</button>
+<mat-card *ngIf="!cart.items.length" class="!flex flex-col items-center justify-center">
+    <h1 class="mx-auto">OOPS your cart is empty
     </h1>
+    <button mat-raised-button class="bg-green-400" routerLink="/home">Start Shopping</button>
 
 </mat-card>
