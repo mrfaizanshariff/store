@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit,OnDestroy {
   rowHeight=ROW_HEIGHT[this.columnsCount];
   products:Product[]|undefined
   productSubscription:Subscription|undefined;
+  isMobileDevice: boolean=false;
  
 // [{
 //     id:1,
@@ -56,9 +57,17 @@ export class HomeComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
+    if(this.isMobile()){
+      this.columnsCount=1
+      this.isMobileDevice=true;
+    }else{
+      this.isMobileDevice=false;
+    }
     this.getProducts()
   }
-
+  isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
   getProducts(category?:string){
     if(!category){
       this.productSubscription= this.storeService.getAllProducts(String(this.limit),this.sort).subscribe((_result)=>{

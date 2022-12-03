@@ -1,6 +1,6 @@
 <mat-drawer-container [autosize]="true"
 class="min-h-full max-w-full mx-auto border-x">
-    <mat-drawer #drawer class="p-8 " mode="side">
+    <mat-drawer #drawer class="p-8 " [mode]="!isMobileDevice?'side':'over'">
         <div class="bg-rose-100">
             <app-filters  (categorySelectionEvent)="onCategorySelected($event)"></app-filters>
         </div>
