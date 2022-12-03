@@ -1,4 +1,4 @@
-<mat-card *ngIf="cart.items.length" class="overscroll-x-auto  sm:mx-auto sm:max-w-full">
+<mat-card *ngIf="cart.items.length" class="overflow-x-scroll  sm:mx-auto sm:max-w-full">
     <table class="mat-elevation-z mx-auto max-w-full" mat-table [dataSource]="dataSource">
 
         <ng-container matColumnDef="product">
@@ -89,4 +89,8 @@
     </h1>
     <button mat-raised-button class="bg-green-400" routerLink="/home">Start Shopping</button>
 
+</mat-card>
+
+<mat-card *ngIf="cart.items.length" class="sm:!hidden w-full text-center !block">
+    <h1>Please Scroll SideWays</h1>
 </mat-card>
