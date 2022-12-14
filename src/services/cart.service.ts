@@ -74,7 +74,7 @@ export class CartService {
   }
 
   onCheckOut(){
-    this.httpClient.post('http://ecommerce-store-virid-seven.vercel.app/checkout',{
+    this.httpClient.post('https://ecommerce-store-virid-seven.vercel.app/checkout',{
       items: this.cart.value.items
     }).subscribe(async (res:any)=>{
       let stripe = await loadStripe('pk_test_51MBA7sSHX9lEb5PAhNuFnL5i1HhvcYuhNsaKbyXO70Ol8bYF5VLFfzQfnTOubDa959zHUQAjAVRDElukCWoA9dgY00APfwkY1G');
