@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Cart, CartItem } from 'src/app/models/cart.modle';
 import { BehaviorSubject } from "rxjs";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpClient } from '@angular/common/http';
+import { loadStripe } from "@stripe/stripe-js";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CartService {
 
   cart = new BehaviorSubject<Cart>({items:[]})
-  constructor(private _snackBar:MatSnackBar) { }
+  constructor(private _snackBar:MatSnackBar, private httpClient:HttpClient) { }
 
   addToCart(item:CartItem):void{
     //creating items array so that original cart subject is not affected
@@ -69,5 +71,16 @@ export class CartService {
     this.cart.next({items:[]})
     this._snackBar.open('Cart Cleared','Ok',{duration:1000})
 
+  }
+
+  onCheckOut(){
+    this.httpClient.post('http://ecommerce-store-virid-seven.vercel.app/checkout',{
+      items: this.cart.value.items
+    }).subscribe(async (res:any)=>{
+      let stripe = await loadStripe('pk_test_51MBA7sSHX9lEb5PAhNuFnL5i1HhvcYuhNsaKbyXO70Ol8bYF5VLFfzQfnTOubDa959zHUQAjAVRDElukCWoA9dgY00APfwkY1G');
+      stripe?.redirectToCheckout({
+        sessionId:res.id
+      })
+    })
   }
 }

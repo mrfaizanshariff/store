@@ -98,6 +98,8 @@ export class CartComponent implements OnInit {
   onDecreaseItemQuantity(item:CartItem){
     this.cartService.reduceQuantityOfItem(item)
   }
-
+  onCheckOut(){
+    this.cartService.onCheckOut()
+  }
 
 }
